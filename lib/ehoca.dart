@@ -8,12 +8,13 @@ class ehoca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor(secondcolor),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         backgroundColor: HexColor(primarycolor),
         title: Text(
           'Tanımayanlar için: EMİR ÖZTÜRK',
-          style: TextStyle(color: HexColor(secondcolor), fontSize: 20),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.background, fontSize: 20),
         ),
       ),
       body: Column(

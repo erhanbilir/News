@@ -3,6 +3,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:onlynews/colors.dart';
+import 'package:onlynews/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsPage extends StatefulWidget {
@@ -48,12 +50,22 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor(secondcolor),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: HexColor(primarycolor),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Icon(
+              Icons.sunny,
+            ),
+          ),
+        ],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           'News Page',
-          style: TextStyle(color: HexColor(secondcolor)),
+          style: TextStyle(color: Theme.of(context).colorScheme.background),
         ),
       ),
       body: FutureBuilder(
@@ -79,6 +91,7 @@ class _NewsPageState extends State<NewsPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: Theme.of(context).colorScheme.secondary,
                           child: ListTile(
                             title: Text(news['title'] ?? ''),
                             subtitle: Text(news['description'] ?? ''),

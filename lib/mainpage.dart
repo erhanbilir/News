@@ -4,7 +4,9 @@ import 'package:onlynews/NewsPage.dart';
 import 'package:onlynews/colors.dart';
 import 'package:onlynews/ehoca.dart';
 import 'package:onlynews/firstpage.dart';
+import 'package:onlynews/theme_provider.dart';
 import 'package:onlynews/userinput.dart';
+import 'package:provider/provider.dart';
 
 class mainPage extends StatelessWidget {
   const mainPage({Key? key}) : super(key: key);
@@ -12,12 +14,11 @@ class mainPage extends StatelessWidget {
   Widget cards(
       BuildContext context, String cardurl, String title, String category) {
     return Card(
-      color: HexColor(primarycolor),
+      color: Theme.of(context).colorScheme.secondary,
       child: Column(
         children: [
           Text(
             title,
-            style: TextStyle(color: HexColor(secondcolor)),
           ),
           GestureDetector(
             onTap: () {
@@ -43,22 +44,30 @@ class mainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor(secondcolor),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        toolbarHeight: 90,
-        backgroundColor: HexColor(primarycolor),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Icon(
+              Icons.sunny,
+            ),
+          ),
+        ],
+        toolbarHeight: 60,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Row(
           children: [
-            SizedBox(
-              width: 0,
-            ),
-            ClipOval(
-              child: SizedBox(
-                width: 250,
-                height: 120,
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
                 child: Image.asset(
-                  'images/onlynewsfoto1.jpeg',
-                  fit: BoxFit.cover,
+                  'images/onlynewsseffaf.png',
+                  scale: 5,
+                  fit: BoxFit
+                      .fitWidth, // Resmi yatayda sığacak şekile getirmek için
                 ),
               ),
             ),
@@ -70,7 +79,7 @@ class mainPage extends StatelessWidget {
           const Row(
             children: [
               Icon(
-                Icons.category_outlined,
+                Icons.donut_large_outlined,
                 size: 50,
               ),
               Text(
@@ -111,7 +120,8 @@ class mainPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: HexColor(primarycolor),
+        height: 60,
+        color: Theme.of(context).colorScheme.primary,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -119,8 +129,8 @@ class mainPage extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.home,
-                color: HexColor(secondcolor),
-                size: 40,
+                color: Theme.of(context).colorScheme.background,
+                size: 30,
               ),
             ),
             IconButton(
@@ -132,8 +142,8 @@ class mainPage extends StatelessWidget {
               },
               icon: Icon(
                 Icons.search,
-                color: HexColor(secondcolor),
-                size: 40,
+                color: Theme.of(context).colorScheme.background,
+                size: 30,
               ),
             ),
             IconButton(
@@ -145,8 +155,8 @@ class mainPage extends StatelessWidget {
               },
               icon: Icon(
                 Icons.person,
-                color: HexColor(secondcolor),
-                size: 40,
+                color: Theme.of(context).colorScheme.background,
+                size: 30,
               ),
             ),
           ],

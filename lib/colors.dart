@@ -1,4 +1,3 @@
-var primarycolor = '0F2167';
-var secondcolor = 'FFECD6';
+var primarycolor = 'E62C33';
 var thirdcolor = '3559E0';
-var usercolor = 'DED0B6';
+var usercolor = 'B8B8B8';

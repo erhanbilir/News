@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:onlynews/colors.dart';
+import 'package:onlynews/forgotpage.dart';
+import 'package:onlynews/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class userinput extends StatelessWidget {
   const userinput({super.key});
@@ -8,163 +11,198 @@ class userinput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor(secondcolor),
+      resizeToAvoidBottomInset:
+          false, //SingleChildScrollView widgetıyla oluşan kaydırmayı önler
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        toolbarHeight: 90,
-        backgroundColor: HexColor(primarycolor),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(
+                context,
+                listen: false,
+              ).toggleTheme();
+            },
+            icon: Icon(
+              Icons.sunny,
+            ),
+          ),
+        ],
+        toolbarHeight: 60,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Row(
           children: [
-            const SizedBox(
-              width: 0,
-            ),
-            ClipOval(
-              child: SizedBox(
-                width: 250,
-                height: 120,
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
                 child: Image.asset(
-                  'images/onlynewsfoto1.jpeg',
-                  fit: BoxFit.cover, // Resmi tamamen kaplamak için
+                  'images/onlynewsseffaf.png',
+                  scale: 5,
+                  fit: BoxFit
+                      .fitWidth, // Resmi yatayda sığacak şekile getirmek için
                 ),
               ),
             ),
           ],
         ),
       ),
-      body: Column(
-        children: [
-          //heme giriş yazısı
-          Container(
-            color: HexColor(usercolor),
-            height: 100,
-            width: 500,
-            child: const Column(
+      body: SingleChildScrollView(
+        //taşmayı önlemek için
+        child: Column(
+          children: [
+            //heme giriş yazısı
+            Container(
+              color: HexColor(usercolor),
+              height: 80,
+              width: 500,
+              child: Column(
+                children: [
+                  Text(
+                    'HEMEN GİRİŞ YAP',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.normal,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                  Text(
+                    'EN GÜNCEL HABERLERİ KAÇIRMA!',
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                        color: Theme.of(context).colorScheme.secondary),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            //email
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'HEMEN GİRİŞ YAP',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
+                Icon(
+                  Icons.mail,
+                  size: 75,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-                Text(
-                  'EN GÜNCEL HABERLERİ KAÇIRMA!',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
+                Container(
+                  color: HexColor(usercolor),
+                  width: 250,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'E-mail adresinizi girin',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary),
+                  ),
                 )
               ],
             ),
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          //email
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.mail,
-                size: 75,
-              ),
-              Container(
-                color: HexColor(usercolor),
-                width: 250,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail adresinizi girin',
-                    labelStyle: TextStyle(color: Colors.black), 
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.black), 
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.black), 
-                    ),
-                  ),
-                  style:
-                      TextStyle(color: HexColor(primarycolor)), 
+            //şifre
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock,
+                  size: 75,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-              )
-            ],
-          ),
-          //şifre
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.lock,
-                size: 75,
-              ),
-              Container(
-                color: HexColor(usercolor),
-                width: 250,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    labelText: 'Şifrenizi girin',
-                    labelStyle: TextStyle(color: Colors.black), 
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.black), 
+                Container(
+                  color: HexColor(usercolor),
+                  width: 250,
+                  child: TextField(
+                    obscureText: true, //metin belirsizleştirme
+                    decoration: InputDecoration(
+                      labelText: 'Şifrenizi girin',
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.black), 
-                    ),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
-                  style:
-                      TextStyle(color: HexColor(primarycolor)), 
+                )
+              ],
+            ),
+            //şifremi unuttum
+            Row(
+              children: [
+                const SizedBox(
+                  width: 240,
                 ),
-              )
-            ],
-          ),
-          //şifremi unuttum
-          Row(
-            children: [
-              const SizedBox(
-                width: 240,
-              ),
-              Text(
-                'Şifremi unuttum',
-                style: TextStyle(
-                    color: HexColor(thirdcolor),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          //giriş yap
-          Container(
-            width: 300,
-            height: 75,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(primary: HexColor(primarycolor)),
-              child: Text(
-                'GİRİŞ YAP',
-                style: TextStyle(color: HexColor(secondcolor), fontSize: 20),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => forgotpage()),
+                    );
+                  },
+                  child: Text(
+                    'Şifremi unuttum',
+                    style: TextStyle(
+                        color: HexColor(thirdcolor),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            //giriş yap
+            Container(
+              width: 300,
+              height: 75,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).colorScheme.tertiary),
+                child: Text(
+                  'GİRİŞ YAP',
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.background,
+                      fontSize: 20),
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 75,
-          ),
-          //hesabınız yok mu
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Hesabınız yok mu? ',
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                'Hemen Kaydolun',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: HexColor(thirdcolor),
-                    fontWeight: FontWeight.bold),
-              )
-            ],
-          )
-        ],
+            const SizedBox(
+              height: 75,
+            ),
+            //hesabınız yok mu
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Hesabınız yok mu? ',
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(
+                  'Hemen Kaydolun',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: HexColor(thirdcolor),
+                      fontWeight: FontWeight.bold),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
