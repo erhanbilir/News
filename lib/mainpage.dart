@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:onlynews/NewsPage.dart';
-import 'package:onlynews/colors.dart';
 import 'package:onlynews/ehoca.dart';
-import 'package:onlynews/firstpage.dart';
 import 'package:onlynews/theme_provider.dart';
 import 'package:onlynews/userinput.dart';
+import 'package:onlynews/widget/navigation_drawer_widget.dart';
 import 'package:provider/provider.dart';
 
 class mainPage extends StatelessWidget {
@@ -45,6 +43,7 @@ class mainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
         actions: [
           IconButton(
