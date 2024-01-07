@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:onlynews/pages/about.dart';
 import 'package:onlynews/pages/settings.dart';
 import 'package:onlynews/pages/userinput.dart';
+import 'package:onlynews/widget/navigation_drawer_widget_2.dart';
 import 'package:provider/provider.dart';
 
 import '../theme_provider.dart';
 
-class NavigationDrawerWidget extends StatelessWidget {
+class NavigationDrawerWidget extends StatefulWidget {
+  @override
+  State<NavigationDrawerWidget> createState() => _NavigationDrawerWidgetState();
+}
+
+class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   String email = '';
+
   @override
   Widget build(BuildContext context) => Drawer(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -119,6 +126,44 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
               icon: Icon(Icons.sunny),
             ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+              icon: Icon(Icons.ac_unit),
+            ),
+            Row(
+              children: <Widget>[
+                // Giriş yap butonu veya çıkış yap butonu
+                isLoggedIn
+                    ? ElevatedButton(
+                        onPressed: () {
+                          // Çıkış yap butonuna basıldığında
+                          setState(() {});
+                        },
+                        child: Text('Çıkış Yap'),
+                      )
+                    : ElevatedButton(
+                        onPressed: () {
+                          // Giriş yap butonuna basıldığında
+                          setState(() {});
+                        },
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => userinput()),
+                            );
+                          },
+                          child: Text('Giriş Yap'),
+                        ),
+                      ),
+              ],
+            )
           ],
         ),
       );

@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:onlynews/colors.dart';
+import 'package:onlynews/mainpage.dart';
 import 'package:onlynews/pages/forgotpage.dart';
 
-class userinput extends StatelessWidget {
-  const userinput({super.key});
+bool isLoggedIn = false;
+
+class userinput extends StatefulWidget {
+  @override
+  State<userinput> createState() => _userinputState();
+}
+
+class _userinputState extends State<userinput> {
+  void degistir() {
+    setState(() {
+      isLoggedIn = !isLoggedIn;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => mainPage()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +172,9 @@ class userinput extends StatelessWidget {
               width: 300,
               height: 75,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() => degistir());
+                },
                 style: ElevatedButton.styleFrom(
                     primary: Theme.of(context).colorScheme.tertiary),
                 child: Text(
