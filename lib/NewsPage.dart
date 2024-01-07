@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:onlynews/colors.dart';
-import 'package:onlynews/theme_provider.dart';
-import 'package:provider/provider.dart';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsPage extends StatefulWidget {
@@ -52,16 +49,6 @@ class _NewsPageState extends State<NewsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-            },
-            icon: Icon(
-              Icons.sunny,
-            ),
-          ),
-        ],
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           'News Page',

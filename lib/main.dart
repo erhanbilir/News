@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:onlynews/ehoca.dart';
-import 'package:onlynews/colors.dart';
-import 'package:onlynews/mainpage.dart';
-import 'package:onlynews/theme.dart';
+import 'package:onlynews/pages/userinput.dart';
 import 'package:onlynews/theme_provider.dart';
-import 'package:onlynews/userinput.dart';
 import 'package:provider/provider.dart';
+
 import 'firstpage.dart';
 
 void main() {

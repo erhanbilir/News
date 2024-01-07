@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:onlynews/colors.dart';
-import 'package:onlynews/forgotpage.dart';
-import 'package:onlynews/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:onlynews/pages/forgotpage.dart';
 
 class userinput extends StatelessWidget {
   const userinput({super.key});
@@ -15,19 +13,7 @@ class userinput extends StatelessWidget {
           false, //SingleChildScrollView widgetıyla oluşan kaydırmayı önler
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Provider.of<ThemeProvider>(
-                context,
-                listen: false,
-              ).toggleTheme();
-            },
-            icon: Icon(
-              Icons.sunny,
-            ),
-          ),
-        ],
+        actions: [],
         toolbarHeight: 60,
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Row(

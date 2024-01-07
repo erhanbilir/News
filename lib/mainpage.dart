@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:onlynews/NewsPage.dart';
 import 'package:onlynews/ehoca.dart';
-import 'package:onlynews/theme_provider.dart';
-import 'package:onlynews/userinput.dart';
+import 'package:onlynews/pages/userinput.dart';
 import 'package:onlynews/widget/navigation_drawer_widget.dart';
-import 'package:provider/provider.dart';
 
 class mainPage extends StatelessWidget {
   const mainPage({Key? key}) : super(key: key);
@@ -45,16 +43,6 @@ class mainPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-            },
-            icon: Icon(
-              Icons.sunny,
-            ),
-          ),
-        ],
         toolbarHeight: 60,
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Row(

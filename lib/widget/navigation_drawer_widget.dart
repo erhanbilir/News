@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:onlynews/about.dart';
-import 'package:onlynews/settings.dart';
-import 'package:onlynews/userinput.dart';
+import 'package:onlynews/pages/about.dart';
+import 'package:onlynews/pages/settings.dart';
+import 'package:onlynews/pages/userinput.dart';
+import 'package:provider/provider.dart';
+
+import '../theme_provider.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   String email = '';
   @override
   Widget build(BuildContext context) => Drawer(
-        backgroundColor: HexColor('FFFFFF'),
+        backgroundColor: Theme.of(context).colorScheme.background,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -43,8 +45,13 @@ class NavigationDrawerWidget extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.videogame_asset_rounded),
-              title: const Text('Game'),
+              leading: Icon(
+                Icons.videogame_asset_rounded,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                'Game',
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -55,8 +62,13 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.help_outline_sharp),
-              title: const Text('Yardım'),
+              leading: Icon(
+                Icons.help_outline_sharp,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                'Yardım',
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -67,8 +79,13 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.groups),
-              title: const Text('Hakkımızda'),
+              leading: Icon(
+                Icons.groups,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                'Hakkımızda',
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -79,8 +96,13 @@ class NavigationDrawerWidget extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Ayarlar'),
+              leading: Icon(
+                Icons.settings,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                'Ayarlar',
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -89,6 +111,13 @@ class NavigationDrawerWidget extends StatelessWidget {
                   ),
                 );
               },
+            ),
+            IconButton(
+              onPressed: () {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleTheme();
+              },
+              icon: Icon(Icons.sunny),
             ),
           ],
         ),
